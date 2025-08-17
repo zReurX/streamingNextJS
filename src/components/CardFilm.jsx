@@ -34,7 +34,6 @@ function CardFilm({ movie }) {
   return (
     <>
       <div
-        
         ref={cardRef}
         onMouseEnter={handleMouseEnter}
         style={{ backgroundImage: `url(${path})` }}
@@ -43,6 +42,7 @@ function CardFilm({ movie }) {
         {/* Overlay visibile solo al passaggio */}
         <div
           onClick={handelClick}
+          onTouchEnd={handelClick}
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
           className="cursor-pointer max-md:hidden absolute inset-0 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <h3 className="text-lg cursor-default font-bold text-white text-center px-2">{movie.title}</h3>
