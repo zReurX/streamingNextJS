@@ -6,7 +6,6 @@ async function Movie({ params }) {
   const { id } = await params
   const uri = `/movie/${id}?language=it-IT`
   const movie = await BaseCall(uri)
-  console.log(movie)
 
   return (
     <>

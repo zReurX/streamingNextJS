@@ -2,14 +2,15 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button";
 
 function BackLink() {
     const router = useRouter()
     return (
-        <button onClick={() => router.back()}
-            className="absolute top-2 left-2 text-4xl cursor-pointer">
-            <IoMdArrowRoundBack className='' />
-        </button>
+        <Button onClick={() => router.back()}
+            className="absolute top-2 left-2 text-4xl">
+            <IoMdArrowRoundBack />
+        </Button>
     )
 }
 

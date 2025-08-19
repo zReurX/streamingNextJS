@@ -9,7 +9,6 @@ function HeroSection({movie}) {
     <div style={{
         backgroundImage:`url(${path})`
     }} className='h-96 bg-center bg-cover'>
-        {console.log(movie)}
         <div>HeroSection</div>
 
     </div>

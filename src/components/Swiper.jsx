@@ -13,7 +13,7 @@ export default ({ text='PlaceHolde...', movies }) => {
 
   return (
     <div className='md:pb-20'>
-        <h2 className='text-white font-bold text-2xl mb-2'>{text}</h2>
+        <h2 className='font-bold text-2xl mb-2'>{text}</h2>
         <Swiper
             style={{
                 overflow:'visible'
@@ -21,7 +21,6 @@ export default ({ text='PlaceHolde...', movies }) => {
         modules={[Navigation, FreeMode, A11y, Virtual]}
         spaceBetween={12}
         freeMode={true}
-        virtual
         breakpoints={{
             320: { slidesPerView: 2 },   // telefoni piccoli
             480: { slidesPerView: 2 },   // telefoni grandi
@@ -35,7 +34,7 @@ export default ({ text='PlaceHolde...', movies }) => {
         onSlideChange={() => console.log('slide change')}
         >
         {movies?.map((movie, index) => (
-            <SwiperSlide key={movie.id} virtualIndex={index} className='w-full'>
+            <SwiperSlide key={movie.id} className='w-full'>
                 <CardFilm movie={movie} />
             </SwiperSlide>
         ))}

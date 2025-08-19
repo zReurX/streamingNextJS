@@ -4,11 +4,26 @@ import { FaPlayCircle, FaRegStar, FaStar } from "react-icons/fa";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { LuCirclePlus } from "react-icons/lu";
 import { useRef } from "react"
-import { redirect } from "next/navigation";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import useMediaQuery from "@/hooks/useMediaQuery";
+import { Button } from "./ui/button";
+import Movie from "@/app/(DashBoard)/movies/[id]/page";
+import Image from "next/image";
 
 function CardFilm({ movie }) {
-  if (!movie?.poster_path) return null
 
+  if (!movie?.poster_path) return null
+  console.log(movie)
+  const isMobile = useMediaQuery('(max-width: 767px)')
   const path = `https://image.tmdb.org/t/p/w342${movie.poster_path}`
   const cardRef = useRef(null)
 
@@ -27,9 +42,33 @@ function CardFilm({ movie }) {
 
   const yearFilm = new Date(movie.release_date).getFullYear().toString()
 
-  const handelClick = () => {
-    redirect(`/movies/${movie.id}`)
-  }
+  if (isMobile) return (
+    <Drawer>
+      <DrawerTrigger asChild>
+
+        <div style={{ backgroundImage: `url(${path})` }}
+          className="group md:hidden h-[300px] rounded-2xl bg-center bg-cover relative  card" />
+
+      </DrawerTrigger>
+
+      <DrawerContent>
+        <DrawerHeader className='flex-row min-h-11'>
+          <Image src={path} height={135} width={80} alt={movie?.title} />
+          <div >
+            <DrawerTitle>{movie?.title}</DrawerTitle>
+            <p className="text-xs">
+              {yearFilm}
+            </p>
+            <DrawerDescription className='min-h-11 truncate'>{movie?.overview}</DrawerDescription>
+
+          </div>
+        </DrawerHeader>
+        <Link href={`/watch/${movie.id}`}>
+          <FaPlayCircle className='cursor-pointer' />
+        </Link>
+      </DrawerContent>
+    </Drawer>
+  )
 
   return (
     <>
@@ -41,8 +80,6 @@ function CardFilm({ movie }) {
       >
         {/* Overlay visibile solo al passaggio */}
         <div
-          onClick={handelClick}
-          onTouchEnd={handelClick}
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
           className="cursor-pointer max-md:hidden absolute inset-0 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <h3 className="text-lg cursor-default font-bold text-white text-center px-2">{movie.title}</h3>
@@ -63,9 +100,9 @@ function CardFilm({ movie }) {
           <p className="text-xs">
             <span className="text-sm text-green-500">Valutazione {movie.vote_average} </span>
             - {yearFilm}
-            </p>
-      </div>
-    </div >
+          </p>
+        </div>
+      </div >
       <style jsx>{`
         .card {
           transition: transform 300ms ease-out;

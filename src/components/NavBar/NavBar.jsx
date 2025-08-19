@@ -11,12 +11,17 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 import SearchBar from './SearchBar';
-import ButtonAvatar from './ButtonAvatar';
+import ButtonAvatar from '../ButtonAvatar';
 import Image from 'next/image';
-import { SidebarTrigger } from './ui/sidebar';
+import { SidebarTrigger } from '../ui/sidebar';
+import UserAvatar from './UserAvatar';
+import { auth } from '@/lib/auth';
+import { ModeToggle } from '../ModeToggle';
+import { Button } from '../ui/button';
 
 
-function NavBar() {
+async function NavBar() {
+  const session = await auth()
   const links = [
     { path: '/', name: 'Home' },
     { path: '/movies', name: 'Film' },
@@ -25,7 +30,7 @@ function NavBar() {
   ]
 
   return (
-    <div className='w-screen bg-zinc-700 fixed  z-40 '>
+    <div className='w-screen sticky top-0 z-40 bg-background'>
       <NavigationMenu>
         <NavigationMenuList>
           <SidebarTrigger className='md:hidden' />
@@ -52,7 +57,12 @@ function NavBar() {
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <ButtonAvatar fallback="RD" />
+            {!session ? 
+            <Button><Link href='/api/auth/signin'>Login</Link></Button> : 
+            <UserAvatar />}
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <ModeToggle />
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
