@@ -10,7 +10,7 @@ function layout({children}) {
                 <SideBar />
                 <NavBar />
                 <div className="max-w-6xl mx-auto">
-                    <div className="w-full overflow-hidden -z-10 min-h-screen">
+                    <div className="w-full overflow-hidden -z-10">
                         {children}
                         <Footer />
                     </div>

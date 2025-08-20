@@ -1,15 +1,16 @@
 import HeroSection from "@/components/HeroSection";
 import Swiper from "@/components/Swiper";
+import allowedIds from "@/lib/allowedIds";
 import { BaseCall } from "@/lib/BaseCall";
 import Image from "next/image";
 
 export default async function Home() {
 
-  const uri = '/movie/popular?language=it-IT&page=1'
+  const uri = '/trending/all/day?language=it-IT&page=1'
 
   const getPopularFilm = async () => {
     const data = await BaseCall(uri)
-    return await data.results
+    return await allowedIds(data.results)
   }
 
   const popularFilms = await getPopularFilm()
@@ -18,7 +19,7 @@ export default async function Home() {
   return (
     <main>
       <HeroSection movie={bestFilm} />
-      <div className="mx-2">
+      <div className="m-2">
         <Swiper text="Popular Film" movies={popularFilms} />
         <Swiper movies={popularFilms} />
 

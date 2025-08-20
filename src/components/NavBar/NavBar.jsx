@@ -24,8 +24,8 @@ async function NavBar() {
   const session = await auth()
   const links = [
     { path: '/', name: 'Home' },
-    { path: '/movies', name: 'Film' },
-    { path: '/tv-shows', name: 'Serie TV' },
+    { path: '/movie', name: 'Film' },
+    { path: '/tv', name: 'Serie TV' },
     { path: '/archive', name: 'Archivio' },
   ]
 
@@ -34,7 +34,8 @@ async function NavBar() {
       <NavigationMenu>
         <NavigationMenuList>
           <SidebarTrigger className='md:hidden' />
-          <Image src='/PopFilm.png' width={120} height={56} alt='logo' />
+          <Image className='md:hidden' src='/PopFilmLogo.png' width={26} height={26} alt='logo' />
+          <Image className='max-md:hidden' src='/PopFilm.png' width={120} height={56} alt='logo' />
           {links.map((link, index) => (
             <NavigationMenuItem className='max-md:hidden' key={index}>
               <NavigationMenuLink asChild>
@@ -46,19 +47,14 @@ async function NavBar() {
           ))}
         </NavigationMenuList>
         <NavigationMenuList>
-          <SearchBar />
-
           <NavigationMenuItem>
-            <FaRegBell />
-          </NavigationMenuItem>
+            <SearchBar />
 
-          <NavigationMenuItem>
-            <ButtonAvatar fallback="IT" />
           </NavigationMenuItem>
 
           <NavigationMenuItem>
             {!session ? 
-            <Button><Link href='/api/auth/signin'>Login</Link></Button> : 
+            <Button asChild><Link href='/api/auth/signin'>Login</Link></Button> : 
             <UserAvatar />}
           </NavigationMenuItem>
           <NavigationMenuItem>

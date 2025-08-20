@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import CardFilm from './CardFilm';
+import CardFilm from './CardFilm/CardFilm';
 
 export default ({ text='PlaceHolde...', movies }) => {
 
@@ -35,7 +35,7 @@ export default ({ text='PlaceHolde...', movies }) => {
         >
         {movies?.map((movie, index) => (
             <SwiperSlide key={movie.id} className='w-full'>
-                <CardFilm movie={movie} />
+                <CardFilm media={movie} />
             </SwiperSlide>
         ))}
         </Swiper>
