@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { IoIosInformationCircleOutline } from "react-icons/io";
 import {
   Drawer, DrawerTrigger, DrawerContent,
   DrawerHeader, DrawerTitle, DrawerDescription,
@@ -68,18 +69,12 @@ export default function CardMedia({ media }) {
             <IoIosCloseCircle />
           </DrawerClose>
         </DrawerHeader>
-        <DrawerFooter className='text-4xl flex-row justify-between'>
-          <ButtonCard link={watchHref} text='riproduci'>
+        <DrawerFooter className='text-4xl flex-row justify-evenly'>
+          <ButtonCard link={watchHref} text='Riproduci'>
             <FaPlayCircle className='cursor-pointer' />
           </ButtonCard>
-          <ButtonCard link={watchHref} text='riproduci'>
-            <FaPlayCircle className='cursor-pointer' />
-          </ButtonCard>
-          <ButtonCard link={watchHref} text='riproduci'>
-            <FaPlayCircle className='cursor-pointer' />
-          </ButtonCard>
-          <ButtonCard link={watchHref} text='riproduci'>
-            <FaPlayCircle className='cursor-pointer' />
+          <ButtonCard link={detailHref} text='Info'>
+            <IoIosInformationCircleOutline className='cursor-pointer' />
           </ButtonCard>
         </DrawerFooter>
       </DrawerContent>
