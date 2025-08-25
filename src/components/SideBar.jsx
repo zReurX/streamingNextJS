@@ -27,8 +27,8 @@ function SideBar() {
 
   const links = [
     { path: '/', name: 'Home' },
-    { path: '/movies', name: 'Film' },
-    { path: '/tv-shows', name: 'Serie TV' },
+    { path: '/movie', name: 'Film' },
+    { path: '/tv', name: 'Serie TV' },
     { path: '/archive', name: 'Archivio' },
   ]
 

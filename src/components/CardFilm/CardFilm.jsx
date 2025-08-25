@@ -59,7 +59,13 @@ export default function CardMedia({ media }) {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className='flex-row'>
-          <Image className='rounded-md' src={imgUrl} height={200} width={100} alt={title} />
+          <Image
+            src={imgUrl}
+            alt={title}
+            height={200}
+            width={100}
+            className="object-cover rounded"
+          />
           <div className='text-left'>
             <DrawerTitle>{title}</DrawerTitle>
             <p className="text-xs"> {year} </p>
@@ -86,7 +92,7 @@ export default function CardMedia({ media }) {
     <div ref={cardRef} className='group relative transform transition-transform duration-300 hover:scale-105 hover:z-10'>
       <Link href={detailHref}>
         <div
-          
+
           onMouseEnter={handleMouseEnter}
           style={{ backgroundImage: `url(${imgUrl})` }}
           className="h-[300px] rounded-2xl group-hover:rounded-b-none bg-center bg-cover relative "

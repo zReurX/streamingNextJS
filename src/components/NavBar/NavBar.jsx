@@ -11,12 +11,11 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
 import SearchBar from './SearchBar';
-import ButtonAvatar from '../ButtonAvatar';
 import Image from 'next/image';
 import { SidebarTrigger } from '../ui/sidebar';
 import UserAvatar from './UserAvatar';
 import { auth } from '@/lib/auth';
-import { ModeToggle } from '../ModeToggle';
+import { ModeToggle } from './ModeToggle';
 import { Button } from '../ui/button';
 
 

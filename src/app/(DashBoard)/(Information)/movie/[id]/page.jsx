@@ -1,5 +1,6 @@
+import HeroInfo from '@/components/HeroInfo/HeroInfo'
 import HeroSection from '@/components/HeroSection'
-import Swiper from '@/components/Swiper'
+import Swiper from '@/components/SwiperFilm'
 import allowedIds from '@/lib/allowedIds'
 import { BaseCall } from '@/lib/BaseCall'
 
@@ -9,16 +10,18 @@ async function Movie({ params }) {
   const uri = `/movie/${id}?language=it-IT`
   const movie = await BaseCall(uri)
   movie.media_type = 'movie'
-  const recommendations = await BaseCall(`/movie/${id}/recommendations`)
+  const recommendations = await BaseCall(`/movie/${id}/recommendations?language=it-IT`)
   const movies = await allowedIds(recommendations.results)
 
-  console.log(movies)
+  console.log(movie)
 
   return (
-    <>
-      <HeroSection movie={movie} />
-      <Swiper text='Raccomandati' movies={movies} />
-    </>
+    <main>
+      <HeroInfo movie={movie} />
+      <div className='mx-2'>
+        <Swiper text='Raccomandati' movies={movies} />
+      </div>
+    </main>
   )
 }
 

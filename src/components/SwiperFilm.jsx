@@ -10,7 +10,6 @@ import 'swiper/css/scrollbar';
 import CardFilm from './CardFilm/CardFilm';
 
 export default ({ text='PlaceHolde...', movies }) => {
-
   return (
     <div className='md:pb-20'>
         <h2 className='font-bold text-2xl mb-2'>{text}</h2>
@@ -23,7 +22,7 @@ export default ({ text='PlaceHolde...', movies }) => {
         freeMode={true}
         breakpoints={{
             320: { slidesPerView: 2 },   // telefoni piccoli
-            480: { slidesPerView: 2 },   // telefoni grandi
+            480: { slidesPerView: 3 },   // telefoni grandi
             640: { slidesPerView: 3 },   // piccoli tablet
             768: { slidesPerView: 4 },   // tablet
             1024: { slidesPerView: 5 },  // desktop piccoli
@@ -33,7 +32,7 @@ export default ({ text='PlaceHolde...', movies }) => {
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
         >
-        {movies?.map((movie, index) => (
+        {movies?.map(movie => (
             <SwiperSlide key={movie.id} className='w-full'>
                 <CardFilm media={movie} />
             </SwiperSlide>

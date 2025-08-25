@@ -1,5 +1,5 @@
 import HeroSection from "@/components/HeroSection";
-import Swiper from "@/components/Swiper";
+import Swiper from "@/components/SwiperFilm";
 import allowedIds from "@/lib/allowedIds";
 import { BaseCall } from "@/lib/BaseCall";
 import Image from "next/image";
@@ -20,8 +20,7 @@ export default async function Home() {
     <main>
       <HeroSection movie={bestFilm} />
       <div className="m-2">
-        <Swiper text="Popular Film" movies={popularFilms} />
-        <Swiper movies={popularFilms} />
+        <Swiper text="Trending All" movies={popularFilms} />
 
       </div>
     </main>

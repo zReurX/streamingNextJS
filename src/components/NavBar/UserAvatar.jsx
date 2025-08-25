@@ -18,7 +18,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import { use } from "react"
 import { Logout } from "./Logout"
 
 export default async function UserAvatar() {
@@ -38,7 +37,6 @@ export default async function UserAvatar() {
         <DropdownMenuSeparator />
         <DropdownMenuItem className='justify-center'><Logout /></DropdownMenuItem>
       </DropdownMenuContent>
-
     </DropdownMenu>
   )
 }
