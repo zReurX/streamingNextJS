@@ -53,7 +53,7 @@ async function NavBar() {
 
           <NavigationMenuItem>
             {!session ? 
-            <Button asChild><Link href='/api/auth/signin'>Login</Link></Button> : 
+            <Button asChild><Link href='/login'>Login</Link></Button> : 
             <UserAvatar />}
           </NavigationMenuItem>
           <NavigationMenuItem>

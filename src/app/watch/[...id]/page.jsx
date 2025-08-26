@@ -1,10 +1,12 @@
-import { auth } from "@/lib/auth";
+import { auth, signIn } from "@/lib/auth";
 import BackLink from "./BackLink";
 import { redirect } from "next/navigation";
 
 
 async function page({ params }) {
   const {id} = await params
+  const session = await auth()
+  if (!session) await signIn('', {redirectTo: `/${id[0]}/${id[1]}`})
 
   return (
     <div className="relative h-screen">
