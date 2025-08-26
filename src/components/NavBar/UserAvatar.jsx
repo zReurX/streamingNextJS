@@ -2,15 +2,9 @@ import { auth } from "@/lib/auth"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -19,6 +13,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 import { Logout } from "./Logout"
+import { prisma } from "@/lib/prisma"
 
 export default async function UserAvatar() {
   const session = await auth()
