@@ -5,9 +5,6 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./prisma";
 
 
-
-
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
   adapter: PrismaAdapter(prisma),
