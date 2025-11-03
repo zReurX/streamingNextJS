@@ -21,7 +21,7 @@ function HeroSection({ movie }) {
           <p className='text-sm md:text-base line-clamp-5'>{movie?.overview}</p>
           <div className='space-x-6'>
             <Button asChild>
-              <Link href={`/watch/${movie?.media_type}/${movie?.id}`}>
+              <Link href={`/watch/${movie?.id}`}>
                 <FaPlay />Riproduci
               </Link>
             </Button>

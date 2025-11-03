@@ -1,4 +1,5 @@
-import { auth } from "@/lib/auth"
+'use client'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,13 +13,21 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
-import { Logout } from "./Logout"
-import { prisma } from "@/lib/prisma"
+import { Button } from "../ui/button"
+import Link from "next/link"
+import { signOut, useSession } from "next-auth/react"
 
-export default async function UserAvatar() {
-  const session = await auth()
+
+export default function UserAvatar() {
+  const { data: session } = useSession()
   const user = session?.user
-  if (!user) return null
+
+  if (!user) return (
+    <Button asChild>
+      <Link href='/login'>Login</Link>
+    </Button>
+  )
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -30,7 +39,9 @@ export default async function UserAvatar() {
       <DropdownMenuContent>
         <DropdownMenuLabel>{user?.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className='justify-center'><Logout /></DropdownMenuItem>
+        <DropdownMenuItem className='justify-center'>
+          <button onClick={signOut}>Logout</button>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

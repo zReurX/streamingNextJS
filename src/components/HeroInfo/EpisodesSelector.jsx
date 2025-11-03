@@ -10,7 +10,7 @@ import {
   SelectGroup,
   SelectItem,
 } from '@/components/ui/select';
-import SwiperEpisodes from '../SwiperEpisodes';
+import Swiper from '../Swiper';
 
 export default function EpisodesSelector({ seasons, episodesBySeason }) {
   const [selected, setSelected] = useState(seasons[0].season_number);
@@ -42,7 +42,9 @@ export default function EpisodesSelector({ seasons, episodesBySeason }) {
         </Select>
       </div>
 
-      <SwiperEpisodes episodes={episodes} />
+      <Swiper film={false}>
+        {episodes}
+      </Swiper>
     </>
   );
 }

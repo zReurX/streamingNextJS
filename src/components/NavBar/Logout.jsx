@@ -1,7 +1,6 @@
-import { signOut } from "@/lib/auth.js"
-import { Button } from "../ui/button"
- 
-export function Logout() {
+import { signOut } from '@/lib/auth'
+
+function Logout() {
   return (
     <form
       action={async () => {
@@ -9,7 +8,9 @@ export function Logout() {
         await signOut()
       }}
     >
-      <Button type="submit">Sign Out</Button>
+      <button type="submit">Sign Out</button>
     </form>
   )
 }
+
+export default Logout

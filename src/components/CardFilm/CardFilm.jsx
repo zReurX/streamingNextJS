@@ -10,11 +10,11 @@ import {
   DrawerFooter,
   DrawerClose
 } from '@/components/ui/drawer';
-import useMediaQuery from '@/hooks/useMediaQuery';
 import { FaPlayCircle, FaRegStar, FaStar } from 'react-icons/fa';
 import { IoIosArrowDropdownCircle, IoIosCloseCircle } from 'react-icons/io';
 import { LuCirclePlus } from 'react-icons/lu';
 import ButtonCard from './ButtonCard';
+import { useMediaQuery } from 'usehooks-ts';
 
 export default function CardMedia({ media }) {
   // Unifica titolo e date
@@ -29,13 +29,14 @@ export default function CardMedia({ media }) {
     ? media.media_type
     : media.first_air_date
       ? 'tv'
-      : 'movies';
+      : 'movie';
 
   // Path per dettagli e play
   const detailHref = `/${type}/${media.id}`;
-  const watchHref = `/watch/${type}/${media.id}`;
+  const watchHref = `/watch/${media.id}`;
 
   const isMobile = useMediaQuery('(max-width: 767px)');
+  
   const cardRef = useRef(null);
 
   const handleMouseEnter = () => {

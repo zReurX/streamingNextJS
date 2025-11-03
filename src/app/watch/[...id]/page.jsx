@@ -1,21 +1,26 @@
 import { auth, signIn } from "@/lib/auth";
 import BackLink from "./BackLink";
-import { redirect } from "next/navigation";
+import { vixsrcPlaylist } from "@/lib/vixsrc";
+import Player from "@/components/Player";
+import { use } from "react";
 
+function page({ params }) {
+  const { id } = use(params);
+  const [tmdbMovieId, seasonNumber, episodeNumber] = id;
+  const session = use(auth());
+  if (!session) use(signIn("", { redirectTo: `/${id[0]}/${id[1]}` }));
+  const watch = {
+    tmdbId: tmdbMovieId, 
+    seasonId: seasonNumber,
+    episodeId: episodeNumber
+  }
 
-async function page({ params }) {
-  const {id} = await params
-  const session = await auth()
-  if (!session) await signIn('', {redirectTo: `/${id[0]}/${id[1]}`})
+  const hlsMasterPlaylistUrl = use(vixsrcPlaylist(...id));
 
   return (
-    <div className="relative h-screen">
+    <div className="h-full w-full flex items-center justify-center">
       <BackLink />
-      <iframe
-        allowFullScreen
-        src={`https://vixsrc.to/${id[0]}/${encodeURIComponent(id[1])}${id[0] === 'tv' ? `/${id[2]}/${id[3]}` : ''}/?autoplay=true&lang=it`}
-        className="w-full h-full"
-      />
+      <Player link={hlsMasterPlaylistUrl} />
     </div>
   );
 }

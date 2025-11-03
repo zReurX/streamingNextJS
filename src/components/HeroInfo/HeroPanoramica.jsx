@@ -15,7 +15,7 @@ function HeroPanoramica({ movie }) {
       <MoreOverview>{movie?.overview}</MoreOverview>
       <div className='space-x-6'>
         <Button asChild>
-          <Link href={`/watch/${movie?.media_type}/${movie?.id}`}>
+          <Link href={`/watch/${movie?.id}`}>
             <FaPlay />Riproduci
           </Link>
         </Button>

@@ -29,7 +29,6 @@ function SideBar() {
     { path: '/', name: 'Home' },
     { path: '/movie', name: 'Film' },
     { path: '/tv', name: 'Serie TV' },
-    { path: '/archive', name: 'Archivio' },
   ]
 
   return (

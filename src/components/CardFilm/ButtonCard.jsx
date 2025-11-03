@@ -6,7 +6,6 @@ function ButtonCard({ children, link='', text }) {
         <div className='flex flex-col gap-2 items-center'>
             <Link href={link}>
                 {children}
-                
             </Link>
             <p className='text-base text-muted-foreground'>{text}</p>
         </div>

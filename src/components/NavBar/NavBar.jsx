@@ -1,46 +1,47 @@
-import Link from 'next/link'
-import { FaRegBell } from "react-icons/fa";
+import Link from "next/link";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-import SearchBar from './SearchBar';
-import Image from 'next/image';
-import { SidebarTrigger } from '../ui/sidebar';
-import UserAvatar from './UserAvatar';
-import { auth } from '@/lib/auth';
-import { ModeToggle } from './ModeToggle';
-import { Button } from '../ui/button';
-
+} from "@/components/ui/navigation-menu";
+import SearchBar from "./SearchBar";
+import Image from "next/image";
+import { SidebarTrigger } from "../ui/sidebar";
+import UserAvatar from "./UserAvatar";
+import { ModeToggle } from "./ModeToggle";
+import { Suspense } from "react";
 
 async function NavBar() {
-  const session = await auth()
   const links = [
-    { path: '/', name: 'Home' },
-    { path: '/movie', name: 'Film' },
-    { path: '/tv', name: 'Serie TV' },
-    { path: '/archive', name: 'Archivio' },
-  ]
+    { path: "/", name: "Home" },
+    { path: "/movie", name: "Film" },
+    { path: "/tv", name: "Serie TV" },
+  ];
 
   return (
-    <div className='w-screen sticky top-0 z-40 bg-background'>
+    <div className="w-screen sticky top-0 z-40 bg-background">
       <NavigationMenu>
         <NavigationMenuList>
-          <SidebarTrigger className='md:hidden' />
-          <Image className='md:hidden' src='/PopFilmLogo.png' width={26} height={26} alt='logo' />
-          <Image className='max-md:hidden' src='/PopFilm.png' width={120} height={56} alt='logo' />
+          <SidebarTrigger className="md:hidden" />
+          <Image
+            className="md:hidden"
+            src="/PopFilmLogo.png"
+            width={26}
+            height={26}
+            alt="logo"
+          />
+          <Image
+            className="max-md:hidden"
+            src="/PopFilm.png"
+            width={120}
+            height={56}
+            alt="logo"
+          />
           {links.map((link, index) => (
-            <NavigationMenuItem className='max-md:hidden' key={index}>
+            <NavigationMenuItem className="max-md:hidden" key={index}>
               <NavigationMenuLink asChild>
-                <Link href={link.path}>
-                  {link.name}
-                </Link>
+                <Link href={link.path}>{link.name}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           ))}
@@ -48,13 +49,10 @@ async function NavBar() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <SearchBar />
-
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            {!session ? 
-            <Button asChild><Link href='/login'>Login</Link></Button> : 
-            <UserAvatar />}
+            <UserAvatar />
           </NavigationMenuItem>
           <NavigationMenuItem>
             <ModeToggle />
@@ -62,7 +60,7 @@ async function NavBar() {
         </NavigationMenuList>
       </NavigationMenu>
     </div>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;

@@ -1,27 +1,26 @@
 import HeroSection from "@/components/HeroSection";
-import Swiper from "@/components/SwiperFilm";
+import Swiper from "@/components/Swiper";
 import allowedIds from "@/lib/allowedIds";
-import { BaseCall } from "@/lib/BaseCall";
-import Image from "next/image";
+import { prisma } from "@/lib/prisma";
+import tmdb from "@/lib/tmdb";
+import { use } from "react";
 
-export default async function Home() {
-
-  const uri = '/trending/all/day?language=it-IT&page=1'
-
-  const getPopularFilm = async () => {
-    const data = await BaseCall(uri)
-    return await allowedIds(data.results)
-  }
-
-  const popularFilms = await getPopularFilm()
-  const bestFilm = popularFilms.shift()
+export default function Home() {
+  const trendigAllDay = use(
+    tmdb.trending
+    .trending("all", "day", { language: "it-IT" })
+    .then((res) => allowedIds(res.results))
+  );
+  const bestFilm = trendigAllDay.shift();
+  const startWatch = use(prisma.startWatch.findMany())
 
   return (
     <main>
       <HeroSection movie={bestFilm} />
       <div className="m-2">
-        <Swiper text="Trending All" movies={popularFilms} />
-
+        <Swiper title="Trending All">
+          {trendigAllDay}
+        </Swiper>
       </div>
     </main>
   );

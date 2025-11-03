@@ -12,7 +12,7 @@ function HeroInfo({ movie, seasons= null, episodes=null }) {
   const [active, setActive] = useState('Panoramica')
   
   const links = ['Panoramica', 'Dettagli']
-  if (movie?.media_type === 'tv') links.push('Episodi')
+  if (seasons) links.push('Episodi')
   
   const path = `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`
 

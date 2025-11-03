@@ -7,7 +7,7 @@ import Link from 'next/link';
 function CardEpisode({ ep }) {
   console.log(ep)
   return (
-    <Link href={`/watch/tv/${ep?.show_id}/${ep?.season_number}/${ep?.episode_number}`}>
+    <Link href={`/watch/${ep?.show_id}/${ep?.season_number}/${ep?.episode_number}`}>
       <AspectRatio ratio={16 / 9} className='group relative'>
         {ep.still_path && (
           <Image
