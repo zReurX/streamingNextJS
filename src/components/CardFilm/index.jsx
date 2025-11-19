@@ -16,7 +16,7 @@ import { LuCirclePlus } from 'react-icons/lu';
 import ButtonCard from './ButtonCard';
 import { useMediaQuery } from 'usehooks-ts';
 
-export default function CardMedia({ media }) {
+export default function CardFilm({ media }) {
   // Unifica titolo e date
   const title = media.title ?? media.name;
   const rawDate = media.release_date ?? media.first_air_date ?? '';

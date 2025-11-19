@@ -10,13 +10,13 @@ import Image from "next/image";
 import { SidebarTrigger } from "../ui/sidebar";
 import UserAvatar from "./UserAvatar";
 import { ModeToggle } from "./ModeToggle";
-import { Suspense } from "react";
 
 async function NavBar() {
+  const navBarComponents = [<SearchBar />, <UserAvatar />, <ModeToggle />];
   const links = [
-    { path: "/", name: "Home" },
-    { path: "/movie", name: "Film" },
-    { path: "/tv", name: "Serie TV" },
+    { href: "/", children: "Home" },
+    { href: "/movie", children: "Film" },
+    { href: "/tv", children: "Serie TV" },
   ];
 
   return (
@@ -41,22 +41,15 @@ async function NavBar() {
           {links.map((link, index) => (
             <NavigationMenuItem className="max-md:hidden" key={index}>
               <NavigationMenuLink asChild>
-                <Link href={link.path}>{link.name}</Link>
+                <Link {...link} />
               </NavigationMenuLink>
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <SearchBar />
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <UserAvatar />
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <ModeToggle />
-          </NavigationMenuItem>
+          {navBarComponents.map((component, idx) => (
+            <NavigationMenuItem key={idx}>{component}</NavigationMenuItem>
+          ))}
         </NavigationMenuList>
       </NavigationMenu>
     </div>
