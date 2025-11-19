@@ -5,7 +5,7 @@ import { Navigation, FreeMode, A11y, Virtual } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-import CardMedia from "./CardFilm/CardFilm";
+import CardFilm from "./CardFilm";
 import CardEpisode from "./CardEpisode/CardEpisode";
 
 const Wrapper = ({wrap, children}) => {
@@ -42,7 +42,7 @@ function Swiper({
       >
         {children.map((item) => (
           <SwiperSlide key={item?.id}>
-            {film ? <CardMedia media={item} /> : <CardEpisode ep={item} />}
+            {film ? <CardFilm media={item} /> : <CardEpisode ep={item} />}
           </SwiperSlide>
         ))}
       </SwiperBase>

@@ -30,7 +30,7 @@ export default function UserAvatar() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger className='cursor-pointer' asChild>
         <Avatar>
           <AvatarImage src={user?.image} />
           <AvatarFallback>PF</AvatarFallback>
