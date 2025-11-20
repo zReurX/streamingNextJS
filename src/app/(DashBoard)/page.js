@@ -13,7 +13,7 @@ export default function Home() {
   );
   const bestFilm = trendigAllDay.shift();
   const startWatch = use(prisma.startWatch.findMany())
-
+  console.log("startWatch", startWatch);
   return (
     <main>
       <HeroSection movie={bestFilm} />
